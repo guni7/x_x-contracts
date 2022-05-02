@@ -1,0 +1,37 @@
+Expected an argument of type 
+('a, option ('b),     map ('a , 'b))   or     
+('a, option ('b), big_map ('a ,'b)), but got an argument of type 
+
+address, 
+
+record [
+  token_assets -> list (
+    record[
+      asset_id -> string ,
+      token_details -> 
+        record[address -> string , 
+        decimals -> nat , 
+        distribution -> list (record[beneficiary_address -> address , percentage -> nat]) , 
+        token_type -> string], 
+        uncapped -> bool
+    ]
+  ) , 
+  trigger_time -> nat
+], 
+big_map (
+address,
+  record [
+    token_assets -> list (
+      record[
+        asset_id -> string , 
+        token_details -> 
+          record[address -> string , 
+          decimals -> nat , 
+          distribution -> list (record[beneficiary_address -> address , percentage -> nat]) , 
+          token_type -> string] , 
+          uncapped -> bool
+        ]
+      ) , 
+      trigger_time -> nat
+  ]
+). 
