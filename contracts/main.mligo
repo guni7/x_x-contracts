@@ -10,7 +10,17 @@ let assert_asset_distribution_sum (assets : token_asset list) : unit =
   let predicate = fun (asset: token_asset) -> 
     assert_with_error ((asset_distribution_sum asset.distribution) = 100n) "asset distribution sum error" in
   List.iter predicate assets
- 
+
+let rec join_lists2 (l1, l2 : operation list list * operation list list) : operation list list = 
+  let predicate = fun (acc,e : operation list list * operation list) -> e :: acc
+  in
+  List.fold predicate l1 l2
+
+let rec join_lists1 (l1, l2 : operation list * operation list ) : operation list = 
+  let predicate = fun (acc ,e : operation list * operation ) -> e :: acc
+  in
+  List.fold predicate l1 l2
+  
 
 let create_user (p, storage : (create_user_param * storage)) : (operation list * storage) = 
   (*check if user exists already*)
@@ -90,13 +100,18 @@ let run_transfer_transactions (p, storage: (run_transfer_transaction_param * sto
   let address_assets_pair_list : (address * token_asset list) list = 
       List.map address_to_asset_list_pair today_trigger_address_list
   in 
-  let transactions_list = List.map get_per_asset_transactions address_assets_pair_list 
+  let transactions_list_list_list : operation list list list = List.map get_per_asset_transactions address_assets_pair_list 
   in
-  let x : operation list list = match List.head_opt transactions_list with 
-    Some p -> p
-  | None -> []
+  let empty_operation_list_list : operation list list = [] 
   in
-  (([]: operation list), { storage with users = storage.users })
+  let flattened_list2 : operation list list =  List.fold_left join_lists2 empty_operation_list_list transactions_list_list_list
+  in
+  let empty_operation_list : operation list = [] in
+  let flattened_list1 : operation list = List.fold_left join_lists1 empty_operation_list flattened_list2
+  in
+
+  (* storage manipulation needed*)
+  ((flattened_list1), { storage with users = storage.users })
 
 let main (param, s : params * storage) : (operation list * storage) = 
   match param with 

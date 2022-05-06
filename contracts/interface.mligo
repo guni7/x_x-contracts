@@ -46,7 +46,6 @@ CreateUserParam of create_user_param
 | UpdateTriggerParam of update_trigger_param
 | RunTransferTransactionParam of run_transfer_transaction_param
 
-
 type transfer =
 [@layout:comb] {
    from : address;
