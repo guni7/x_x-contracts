@@ -1,5 +1,7 @@
 # x_x-contracts
 
+Contract deployed at KT19xorVBYtEy5sofm6HTJsP219MtzpybEtu - Ithicanet
+
 The smart contract has 3 entrypoints.
 
 create user - This is used to create and update a user's profile. A user's profile contains details about the assets that the user owns and their distribution details.
