@@ -20,7 +20,5 @@ This is used to reset the dead man's switch by 6 months (1 day for test accounts
 
 run transfers - 
 This is used to execute transfers to beneficiary accounts when the switch is triggered. This is triggered once everyday from a server.
-
-The storage of the smart contract 
-This can be called by anyone. The endpoint execution fails when the 
+This endpoint of the smart contract can be called by anyone. The endpoint execution fails when the current time is less than the switch trigger time.
 
