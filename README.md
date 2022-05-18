@@ -2,6 +2,9 @@
 
 Contract deployed at KT19xorVBYtEy5sofm6HTJsP219MtzpybEtu - Ithicanet
 
+Interact here-
+https://better-call.dev/ithacanet/KT19xorVBYtEy5sofm6HTJsP219MtzpybEtu/storage
+
 The storage is the contract contains 2 main components
 
 | Component       | Type         | Description  |
